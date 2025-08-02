@@ -34,7 +34,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node"
   },
-  "include": ["src/**/*", "prisma/**/*"],
+  "include": ["src/**/*", "prisma/**/*", "sqls/seedFromSql.ts"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "esm": false
