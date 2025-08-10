@@ -9,7 +9,32 @@ async function getUser(email: string) {
       email: email,
     },
   });
-  console.log(user);
+  return user;
+}
+
+// 単一ユーザー & 注文状を況取得
+async function getUserWithOrders(email: string) {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+    // 注文情報を含める
+    // order テーブルのレコードを取得(リレーション: userId)
+    include: {
+      orders: {
+        // orderItems テーブルのレコードを取得(リレーション: orderId)
+        include: {
+          orderItems: {
+            // orderItems テーブルのproductを取得(リレーション状態のレコードは明示的に指定が必要)
+            include: {
+              product: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  return user;
 }
 
 // 複数ユーザー取得
@@ -20,12 +45,14 @@ async function getUsers(sex: string) {
     },
   });
   console.log(users);
+  return users;
 }
 
 // 全ユーザー取得
 async function getAllUsers() {
   const allUsers = await prisma.user.findMany();
   console.log(allUsers);
+  return allUsers;
 }
 
 async function main() {
@@ -46,7 +73,20 @@ async function main() {
         );
         return;
       }
-      await getUser(arg1);
+      console.log(await getUser(arg1));
+      break;
+    case "getUserWithOrders":
+      if (!arg1) {
+        console.log("❌ エラー: メールアドレスを指定してください");
+        console.log(
+          "使用方法: npx ts-node src/select/basic.ts getUser [メールアドレス]"
+        );
+        console.log(
+          "例: npx ts-node src/select/basic.ts getUser yamada@example.com"
+        );
+        return;
+      }
+      console.dir(await getUserWithOrders(arg1), { depth: null });
       break;
     case "getUsers":
       if (!arg1) {
@@ -57,10 +97,10 @@ async function main() {
         console.log("例: npx ts-node src/select/basic.ts getUsers male");
         return;
       }
-      await getUsers(arg1);
+      console.log(await getUsers(arg1));
       break;
     case "getAllUsers":
-      await getAllUsers();
+      console.log(await getAllUsers());
       break;
     default:
       console.log(

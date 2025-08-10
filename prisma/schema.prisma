@@ -17,6 +17,7 @@ model User {
   updatedAt DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamp(0)
   orders    Order[]
   reviews   Review[]
+  password  String    @db.VarChar(255)
 
   @@map("users") // DBのテーブル名を指定
 }
@@ -41,6 +42,7 @@ enum orders_status {
   delivered
   cancelled
 }
+
 model Order {
   id          Int            @id @default(autoincrement())
   userId      Int            @map("user_id")

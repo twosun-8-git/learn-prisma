@@ -8,10 +8,10 @@ async function main() {
   console.log("🌱 データベースにシードデータを投入中...");
 
   const sqlFiles = [
-    // "users.sql",
+    "users.sql",
     // "products.sql",
     // "orders.sql",
-    "order_items.sql",
+    // "order_items.sql",
   ];
 
   try {
