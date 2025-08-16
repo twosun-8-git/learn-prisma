@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 /** 複数ユーザー取得*/
 export async function getUsers(sex: string) {
-  const users = await prisma.user.findMany({
+  const users = await p.user.findMany({
     where: {
       sex: sex,
     },

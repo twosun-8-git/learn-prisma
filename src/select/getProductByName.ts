@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 /** 検索*/
 export async function getProductByName(name: string) {
-  const result = await prisma.product.findMany({
+  const result = await p.product.findMany({
     where: {
       name: {
         // contains: name, // 部分一致検索

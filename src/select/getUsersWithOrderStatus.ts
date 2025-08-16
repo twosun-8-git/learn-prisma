@@ -1,10 +1,10 @@
 import { orders_status } from "@prisma/client";
 
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 /** 注文があるユーザーを取得*/
 export async function usersHasOrders() {
-  const result = await prisma.user.findMany({
+  const result = await p.user.findMany({
     where: {
       orders: {
         some: {}, // 何らかの注文がある
@@ -17,7 +17,7 @@ export async function usersHasOrders() {
 
 /** 注文がないユーザーを取得*/
 export async function usersEmptyOrders() {
-  const result = await prisma.user.findMany({
+  const result = await p.user.findMany({
     where: {
       orders: {
         none: {}, // 注文がない
@@ -30,7 +30,7 @@ export async function usersEmptyOrders() {
 
 /** statusが"delivered"のユーザーを取得*/
 export async function usersEveryOrders(status: orders_status) {
-  const result = await prisma.user.findMany({
+  const result = await p.user.findMany({
     where: {
       orders: {
         every: { status: status },
@@ -46,7 +46,7 @@ export async function usersEveryOrders(status: orders_status) {
 
 /** statusが"delivered"の最初のユーザーを取得*/
 export async function usersEveryOrdersFirst(status: orders_status) {
-  const result = await prisma.user.findFirst({
+  const result = await p.user.findFirst({
     where: {
       orders: {
         every: { status: status },

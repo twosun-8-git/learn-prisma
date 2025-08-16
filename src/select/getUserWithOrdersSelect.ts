@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 /** 単一ユーザー & 注文状を含む取得（ select ）*/
 export async function getUserWithOrdersSelect(email: string) {
-  const user = await prisma.user.findUnique({
+  const user = await p.user.findUnique({
     where: {
       email: email,
     },

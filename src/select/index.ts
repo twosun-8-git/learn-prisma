@@ -19,7 +19,7 @@ import {
   usersEveryOrdersFirst,
 } from "./getUsersWithOrderStatus";
 
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -156,10 +156,10 @@ async function main() {
 main()
   .then(async () => {
     console.log("✅ 処理が完了しました");
-    await prisma.$disconnect();
+    await p.$disconnect();
   })
   .catch(async (e) => {
     console.error(e);
-    await prisma.$disconnect();
+    await p.$disconnect();
     process.exit(1);
   });

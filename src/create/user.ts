@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 // 単一ユーザー登録
 async function createUser() {
-  const result = await prisma.user.create({
+  const result = await p.user.create({
     data: {
       email: "tanteigoro@example.com",
       name: "探偵吾郎",
@@ -18,7 +18,7 @@ async function createUser() {
 
 // 複数ユーザー登録
 async function createUsers() {
-  const result = await prisma.user.createMany({
+  const result = await p.user.createMany({
     data: [
       {
         name: "高橋美咲",

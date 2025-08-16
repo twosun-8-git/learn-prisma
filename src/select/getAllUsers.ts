@@ -1,8 +1,8 @@
-import { prisma } from "../lib/prisma";
+import { p } from "../lib/prisma";
 
 /** 全ユーザー取得*/
 export async function getAllUsers() {
-  const allUsers = await prisma.user.findMany();
+  const allUsers = await p.user.findMany();
   console.log(allUsers);
   return allUsers;
 }

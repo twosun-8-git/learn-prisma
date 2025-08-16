@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function createOrder() {
-  const result = await prisma.order.create({
+  const result = await p.order.create({
     // 登録するデータ
     data: {
       userId: 19,
