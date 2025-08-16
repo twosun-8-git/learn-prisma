@@ -1,10 +1,9 @@
 import argon2 from "argon2";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import { p } from "../lib/prisma";
 
 // 単一ユーザー登録
-async function createUser() {
+export async function createUser() {
   const result = await p.user.create({
     data: {
       email: "tanteigoro@example.com",
@@ -17,7 +16,7 @@ async function createUser() {
 }
 
 // 複数ユーザー登録
-async function createUsers() {
+export async function createUsers() {
   const result = await p.user.createMany({
     data: [
       {
@@ -45,35 +44,3 @@ async function createUsers() {
   });
   return result;
 }
-
-async function main() {
-  const args = process.argv.slice(2);
-  const functionName = args[0];
-
-  const arg1 = args[1];
-
-  switch (functionName) {
-    case "createUser":
-      console.log(await createUser());
-      break;
-    case "createUsers":
-      console.log(await createUsers()); // 同時に複数登録した場合は件数が返ってくる。
-      break;
-    default:
-      console.log(
-        "使用方法: npx ts-node src/test.ts [function A | function B]"
-      );
-      console.log("例: npx ts-node src/select/basic.ts B");
-  }
-}
-
-main()
-  .then(async () => {
-    console.log("✅ 処理が完了しました");
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });

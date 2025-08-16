@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { p } from "../lib/prisma";
 
-const prisma = new PrismaClient();
-
-async function createOrder() {
+export async function createOrder() {
   const result = await p.order.create({
     // 登録するデータ
     data: {
@@ -31,32 +29,3 @@ async function createOrder() {
   });
   return result;
 }
-
-async function main() {
-  const args = process.argv.slice(2);
-  const functionName = args[0];
-
-  const arg1 = args[1];
-
-  switch (functionName) {
-    case "createOrder":
-      console.log(await createOrder());
-      break;
-    default:
-      console.log(
-        "使用方法: npx ts-node src/test.ts [function A | function B]"
-      );
-      console.log("例: npx ts-node src/select/basic.ts B");
-  }
-}
-
-main()
-  .then(async () => {
-    console.log("✅ 処理が完了しました");
-    await prisma.$disconnect();
-  })
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });

@@ -1,9 +1,7 @@
-// TODO: .updateMany()を使用してみる
-// TODO: .upsert()を使用してみる
-
-import { updateUser } from "./updateUser";
-
 import { p } from "../lib/prisma";
+import { updateUser } from "./updateUser";
+import { updateUsersBySex } from "./updateMany";
+import { upsertUser } from "./upsert";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -43,6 +41,32 @@ async function main() {
       if (arg3 !== undefined) payload.email = arg3;
 
       console.log(await updateUser(payload));
+      break;
+    case "updateUsersBySex":
+      if (!arg1 || !arg2) {
+        console.log("❌ エラー: 引数を正しくを指定してください");
+        console.log(
+          "使用方法: npx ts-node src/select/basic.ts getUser [メールアドレス]"
+        );
+        console.log(
+          "例: npx ts-node src/select/basic.ts getUser yamada@example.com"
+        );
+        return;
+      }
+      console.log(await updateUsersBySex(arg1, Number(arg2)));
+      break;
+    case "upsertUser":
+      if (!arg1 || !arg2) {
+        console.log("❌ エラー: 引数を正しくを指定してください");
+        console.log(
+          "使用方法: npx ts-node src/select/basic.ts getUser [メールアドレス]"
+        );
+        console.log(
+          "例: npx ts-node src/select/basic.ts getUser yamada@example.com"
+        );
+        return;
+      }
+      console.log(await upsertUser(arg1, arg2));
       break;
     default:
       console.log(
