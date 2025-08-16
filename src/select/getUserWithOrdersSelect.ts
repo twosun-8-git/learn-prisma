@@ -1,4 +1,4 @@
-import { prisma } from ".";
+import { prisma } from "../lib/prisma";
 
 /** 単一ユーザー & 注文状を含む取得（ select ）*/
 export async function getUserWithOrdersSelect(email: string) {

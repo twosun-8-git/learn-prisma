@@ -1,4 +1,4 @@
-import { PrismaClient, orders_status } from "@prisma/client";
+import { orders_status } from "@prisma/client";
 
 import { getUser } from "./getUser";
 import { getUserWithOrders } from "./getUserWithOrders";
@@ -19,7 +19,7 @@ import {
   usersEveryOrdersFirst,
 } from "./getUsersWithOrderStatus";
 
-export const prisma = new PrismaClient();
+import { prisma } from "../lib/prisma";
 
 async function main() {
   const args = process.argv.slice(2);

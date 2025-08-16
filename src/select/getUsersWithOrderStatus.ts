@@ -1,6 +1,6 @@
 import { orders_status } from "@prisma/client";
 
-import { prisma } from ".";
+import { prisma } from "../lib/prisma";
 
 /** 注文があるユーザーを取得*/
 export async function usersHasOrders() {

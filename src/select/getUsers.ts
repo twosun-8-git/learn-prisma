@@ -1,4 +1,4 @@
-import { prisma } from ".";
+import { prisma } from "../lib/prisma";
 
 /** 複数ユーザー取得*/
 export async function getUsers(sex: string) {

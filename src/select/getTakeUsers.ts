@@ -1,4 +1,4 @@
-import { prisma } from ".";
+import { prisma } from "../lib/prisma";
 
 /** 指定された数のユーザー取得*/
 export async function getTakeUsers(take: number) {

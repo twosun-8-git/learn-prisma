@@ -1,4 +1,4 @@
-import { prisma } from ".";
+import { prisma } from "../lib/prisma";
 
 /** AND条件（全ての条件を満たす）*/
 export async function getProductAnd() {
