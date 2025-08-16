@@ -10,6 +10,7 @@
     "start": "node dist/index.js",
     "format": "npx prisma format",
     "lint": "npx prisma validate",
+    "erd": "npx mmdc -i ./prisma/erd.md -o ./prisma/erd.png",
     "db:migrate": "npx prisma migrate dev",
     "db:generate": "npx prisma generate",
     "db:studio": "npx prisma studio",
@@ -18,11 +19,15 @@
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
+    "argon2": "^0.43.1",
     "prisma": "^5.19.1"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.9.0",
     "@types/node": "^20.5.0",
     "nodemon": "^3.0.1",
+    "prisma-erd-generator": "^2.0.4",
+    "puppeteer": "^23.11.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

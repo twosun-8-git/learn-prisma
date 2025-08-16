@@ -1,3 +1,4 @@
+import argon2 from "argon2";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -9,6 +10,7 @@ async function createUser() {
       email: "tanteigoro@example.com",
       name: "探偵吾郎",
       sex: "female",
+      password: await argon2.hash("password"),
     },
   });
   return result;
@@ -23,18 +25,21 @@ async function createUsers() {
         email: "takahashi@example.com",
         sex: "female",
         age: 25,
+        password: await argon2.hash("password"),
       },
       {
         name: "渡辺健一",
         email: "watanabe@example.com",
         sex: "male",
         age: 32,
+        password: await argon2.hash("password"),
       },
       {
         name: "中村由美",
         email: "nakamura@example.com",
         sex: "female",
         age: 29,
+        password: await argon2.hash("password"),
       },
     ],
   });
