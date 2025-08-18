@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { p } from "../lib/prisma";
 
 // 特定の性別のユーザーの年齢を一括更新
@@ -13,6 +12,6 @@ export async function updateUsersBySex(sex: string, ageIncrement: number) {
       },
     },
   });
-  console.log(`${result.count}件のユーザーの年齢を更新しました`);
+  console.log(`${result}件のユーザーの年齢を更新しました`);
   return result;
 }

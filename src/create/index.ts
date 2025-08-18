@@ -2,6 +2,8 @@ import { p } from "../lib/prisma";
 import { createUser, createUsers } from "./user";
 import { createOrder } from "./order";
 
+//TODO: createManyAndReturnを試す。https://www.prisma.io/docs/orm/prisma-client/queries/crud
+
 async function main() {
   const args = process.argv.slice(2);
   const functionName = args[0];
