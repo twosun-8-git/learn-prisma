@@ -1,8 +1,7 @@
 import { p } from "../lib/prisma";
 import { createUser, createUsers } from "./user";
 import { createOrder } from "./order";
-
-//TODO: createManyAndReturnを試す。https://www.prisma.io/docs/orm/prisma-client/queries/crud
+import { createProduct } from "./product";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -16,6 +15,9 @@ async function main() {
       break;
     case "createOrder":
       console.log(await createOrder());
+      break;
+    case "createProduct":
+      console.log(await createProduct());
       break;
     default:
       console.log(

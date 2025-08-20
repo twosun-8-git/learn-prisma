@@ -6,9 +6,10 @@ import { p } from "../lib/prisma";
 export async function createUser() {
   const result = await p.user.create({
     data: {
-      email: "tanteigoro@example.com",
-      name: "探偵吾郎",
-      sex: "female",
+      email: "arigataro@example.com",
+      name: "有賀太郎",
+      sex: "male",
+      age: 25,
       password: await argon2.hash("password"),
     },
   });
