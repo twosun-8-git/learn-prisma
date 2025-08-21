@@ -1,5 +1,7 @@
 import { orders_status } from "@prisma/client";
 
+import { p, showQueryStats } from "../lib/prisma";
+
 import { getUser } from "./getUser";
 import { getUserWithOrders } from "./getUserWithOrders";
 import { getUserWithOrdersSelect } from "./getUserWithOrdersSelect";
@@ -18,8 +20,6 @@ import {
   usersEveryOrders,
   usersEveryOrdersFirst,
 } from "./getUsersWithOrderStatus";
-
-import { p } from "../lib/prisma";
 
 async function main() {
   const args = process.argv.slice(2);
@@ -155,6 +155,7 @@ async function main() {
 
 main()
   .then(async () => {
+    showQueryStats();
     console.log("✅ 処理が完了しました");
     await p.$disconnect();
   })
