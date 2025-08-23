@@ -44,5 +44,5 @@ export function showQueryStats() {
   queryCount = 0;
   queryLogs = [];
   queryTotalDuration = 0;
-  return queryCount;
+  return;
 }
